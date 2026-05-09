@@ -339,3 +339,101 @@
 .gap-2 { gap: var(--sp-2); }
 .flex { display: flex; }
 .items-center { align-items: center; }
+
+/* ── mobile responsive refinements ──────────────────────────────────────── */
+
+/* Sidebar: hide user name/role text on very small screens to save space */
+@media (max-width: 480px) {
+  .sidebar {
+    padding: var(--sp-2) var(--sp-3);
+    gap: var(--sp-1);
+  }
+  .sidebar-user {
+    padding: var(--sp-1) var(--sp-2);
+    gap: var(--sp-1);
+  }
+  .sidebar-user-name,
+  .sidebar-user-role {
+    display: none;
+  }
+  .nav-link {
+    padding: var(--sp-1) var(--sp-2);
+    font-size: var(--text-xs);
+  }
+}
+
+/* Modal form: stack 2-col grid to single column on narrow screens */
+@media (max-width: 480px) {
+  .modal {
+    padding: var(--sp-4);
+    margin: var(--sp-2);
+  }
+  .modal-body {
+    gap: var(--sp-3);
+  }
+}
+
+/* Bar chart: reduce gap on mobile */
+@media (max-width: 480px) {
+  .bar-chart {
+    gap: var(--sp-2);
+  }
+  .chart-section {
+    padding: var(--sp-4);
+  }
+}
+
+/* Task rows: ensure proper wrapping on narrow screens */
+@media (max-width: 480px) {
+  .task-row {
+    padding: var(--sp-3);
+    gap: var(--sp-2);
+  }
+  .task-title {
+    min-width: 0;
+    width: 100%;
+  }
+  .task-actions {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* Page header: stack title + button vertically on very small screens */
+@media (max-width: 480px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-5);
+  }
+}
+
+/* Stat cards: tighter padding on small screens */
+@media (max-width: 480px) {
+  .stat-card {
+    padding: var(--sp-3);
+  }
+  .stat-grid {
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-5);
+  }
+}
+
+/* Project cards: tighter on mobile */
+@media (max-width: 480px) {
+  .project-card {
+    padding: var(--sp-4);
+  }
+  .project-grid {
+    gap: var(--sp-3);
+  }
+}
+
+/* Ensure the main content doesn't overflow horizontally */
+@media (max-width: 480px) {
+  .main {
+    padding: var(--sp-4) var(--sp-3);
+  }
+}
