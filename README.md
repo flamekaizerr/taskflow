@@ -115,7 +115,7 @@ Seeded automatically on first startup.
 
 ### Live URL
 
-**https://\<your-app\>.vercel.app** *(update after deployment)*
+**https://taskflow-three-murex.vercel.app**
 
 ---
 
