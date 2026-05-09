@@ -92,7 +92,7 @@ function AddTaskModal({ workspaceId, users, onClose, onAdded }) {
               placeholder="Any extra context…"
               value={form.description} onChange={f('description')} />
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'var(--sp-3)' }}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(180px, 100%), 1fr))', gap:'var(--sp-3)' }}>
             <div className="field">
               <label className="label">Due date</label>
               <input className="input" type="date" value={form.due_date} onChange={f('due_date')} />
