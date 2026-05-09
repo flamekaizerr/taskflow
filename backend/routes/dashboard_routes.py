@@ -1,6 +1,7 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
-from datetime import date
+from datetime import date, datetime, timezone, timedelta
+from typing import Optional
 from database import get_db
 from models import Person, Workspace, Ticket
 from schemas import DashboardOut
@@ -10,6 +11,7 @@ router = APIRouter(prefix="/api/dashboard", tags=["dashboard"])
 
 @router.get("", response_model=DashboardOut)
 def pullDashboardStats(
+    tz_offset: Optional[int] = Query(None, description="Client timezone offset in minutes (e.g. -330 for IST)"),
     db: Session = Depends(get_db),
     _: Person = Depends(kickOutUnauthorized),
 ):
@@ -19,7 +21,15 @@ def pullDashboardStats(
 
     by_status = {"todo": 0, "in_progress": 0, "done": 0}
     overdue_count = 0
-    today = date.today()
+
+    # Use client timezone offset to compute the correct "today" for the user.
+    # JS Date.getTimezoneOffset() returns minutes *behind* UTC (e.g. IST = -330),
+    # so we negate it to get the UTC offset.
+    if tz_offset is not None:
+        client_tz = timezone(timedelta(minutes=-tz_offset))
+        today = datetime.now(client_tz).date()
+    else:
+        today = date.today()
 
     for t in tickets:
         if t.status in by_status:

@@ -18,7 +18,9 @@ export const registerUser = (data) => client.post('/api/auth/register', data)
 export const fetchMe      = ()     => client.get('/api/auth/me')
 
 // ── dashboard ─────────────────────────────────────────────────────────────────
-export const pullDashboardStats = () => client.get('/api/dashboard')
+export const pullDashboardStats = () => client.get('/api/dashboard', {
+  params: { tz_offset: new Date().getTimezoneOffset() }
+})
 
 // ── workspaces ────────────────────────────────────────────────────────────────
 export const pullProjectList   = ()       => client.get('/api/workspaces')
