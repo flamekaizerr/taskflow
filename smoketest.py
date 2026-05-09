@@ -1,7 +1,4 @@
-"""
-TaskFlow smoke test — runs against http://localhost:8000
-Covers every scenario listed in the test plan.
-"""
+
 import sys
 import requests
 from datetime import date, timedelta
