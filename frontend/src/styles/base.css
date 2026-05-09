@@ -1,0 +1,84 @@
+/* ── design tokens ─────────────────────────────────────────────────────────── */
+:root {
+  --font-body: 'General Sans', system-ui, sans-serif;
+
+  /* type scale */
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+
+  /* spacing */
+  --sp-1: 0.25rem; --sp-2: 0.5rem;  --sp-3: 0.75rem; --sp-4: 1rem;
+  --sp-5: 1.25rem; --sp-6: 1.5rem;  --sp-8: 2rem;    --sp-10: 2.5rem;
+  --sp-12: 3rem;   --sp-16: 4rem;
+
+  /* radius */
+  --r-sm: 0.375rem; --r-md: 0.5rem; --r-lg: 0.75rem; --r-full: 9999px;
+
+  /* transition */
+  --ease: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* colour tokens */
+:root {
+  --bg:          #f7f6f2;
+  --surface:     #f9f8f5;
+  --surface-2:   #ffffff;
+  --surface-off: #f0ede9;
+  --border:      oklch(from #28251d l c h / 0.12);
+  --divider:     #dcd9d5;
+
+  --text:        #28251d;
+  --text-muted:  #6b6a65;
+  --text-faint:  #bab9b4;
+  --text-inv:    #f9f8f4;
+
+  --primary:         #01696f;
+  --primary-hover:   #0c4e54;
+  --primary-hi:      #cedcd8;
+
+  --success:         #437a22;
+  --success-hi:      #d4dfcc;
+  --warning:         #964219;
+  --warning-hi:      #ddcfc6;
+  --error:           #a12c7b;
+  --error-hi:        #e0ced7;
+  --blue:            #006494;
+  --blue-hi:         #c6d8e4;
+
+  --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.09);
+  --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.12);
+}
+
+/* ── reset ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+}
+img, svg { display: block; max-width: 100%; }
+input, button, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: none; }
+a, button, input, select, textarea {
+  transition: color var(--ease), background var(--ease),
+              border-color var(--ease), box-shadow var(--ease);
+}
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
